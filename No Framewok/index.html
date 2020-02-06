@@ -8,17 +8,113 @@
     
   </head>
   <body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a>
+    
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Home
+          </a>
+    
+          <a class="navbar-item">
+            Documentation
+          </a>
+    
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+            </a>
+    
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
+              </a>
+              <a class="navbar-item">
+                Jobs
+              </a>
+              <a class="navbar-item">
+                Contact
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                Report an issue
+              </a>
+            </div>
+          </div>
+        </div>
+    
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <section class="section">
         <div class="container">
-        <h1 class="title">
-            Git is Awesome
-        </h1>
-        <p class="subtitle">
-            My first website with <strong>Bulma</strong>!
-        </p>
+        
+          <div class="columns">
+            <div class="column"> 
+              <div class="box" id="VueBox">
+
+                <div class="notification is-primary" v-for="(x, i) in todos">
+                  <button class="delete" @click="remove(i)" ></button>
+                  {{i}}. {{x.text}} 
+                </div>
+                <input class="input" type="text" placeholder="Text input" v-model="newTodo">
+                <button class="button is-primary is-light" @click="add()" >Add</button>
+              </div>  
+            </div>
+            <div class="column"> A column </div>
+            <div class="column"> A column </div>
+          </div>
+
         </div>
     </section>
-    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#VueBox',
+        data: {
+          newTodo: "",
+          todos: [
+            { text: 'Learn JavaScript' },
+            { text: 'Learn Vue' },
+            { text: 'Build something awesome' }
+          ]
+        },
+        methods: {
+          remove(i){
+            this.todos.splice(i, 1);
+          },
+          add(){
+            this.todos.push({ text: this.newTodo })
+          }
+        }
+      })
+    
+    </script>
+
   </body>
 </html>
