@@ -1,0 +1,22 @@
+{
+  "name": "2020-spring-what-do-you-meme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jewpaltz/2020-spring-what-do-you-meme.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jewpaltz/2020-spring-what-do-you-meme/issues"
+  },
+  "homepage": "https://github.com/jewpaltz/2020-spring-what-do-you-meme#readme"
+}
