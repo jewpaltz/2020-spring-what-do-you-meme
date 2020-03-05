@@ -1,8 +1,9 @@
 <template>
-  <div class="container">
+  <form class="container" @submit.prevent="login">
+      {{error}}
       <div class="field">
         <p class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="Email">
+            <input class="input" type="email" placeholder="Email" v-model="email" >
             <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
             </span>
@@ -13,7 +14,7 @@
         </div>
         <div class="field">
         <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password">
+            <input class="input" type="password" placeholder="Password" v-model="password">
             <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
             </span>
@@ -26,12 +27,30 @@
             </button>
         </p>
         </div>
-  </div>
+  </form>
 </template>
 
 <script>
-export default {
+import { Login } from "../models/Users";
 
+export default {
+    data(){
+        return {
+            email: '',
+            password: '',
+            error: ''
+        }
+    },
+    methods: {
+        login(){
+            try {
+                Login(this.email, this.password);
+                this.$router.push('/game');
+            } catch (error) {
+                this.error = error;
+            }
+        }
+    }
 }
 </script>
 

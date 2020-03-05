@@ -1,3 +1,5 @@
+import { CurrentUser } from "./Users";
+
 export const Players = [
     { Name: 'Bernie', Score: 0, isDealer: false }
 ];
@@ -25,6 +27,8 @@ export let CurrentPicture = "";
 export const CardsInPlay = [];
 
 export function Init(){
+    Players.push( { Name: CurrentUser.Name, Score: 0, isDealer: true })
+
     MyCards.push(CaptionsDeck[0])
     MyCards.push(CaptionsDeck[1]);
 
