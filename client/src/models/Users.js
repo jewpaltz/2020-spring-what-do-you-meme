@@ -6,13 +6,16 @@ const Users = [
     
 ];
 
-export let CurrentUser = null;
+let ob = {
+    CurrentUser: null,
+    Login(email, password) {
 
-export function Login(email, password) {
+        const user = Users.find(x => x.Email == email);
+        if(!user) throw Error('User not found');
+        if(user.Password != password) throw Error('Wrong Password');
 
-    const user = Users.find(x => x.Email == email);
-    if(!user) throw Error('User not found');
-    if(user.Password != password) throw Error('Wrong Password');
+        return this.CurrentUser = user;
+    }
+} ;
 
-    return CurrentUser = user;
-}
+export default ob;

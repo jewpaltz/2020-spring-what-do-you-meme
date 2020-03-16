@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue';
 import Game from '../views/Game.vue';
 import Login from '../views/Login.vue';
-import { CurrentUser } from '../models/Users';
+import Users from '../models/Users';
 
 Vue.use(VueRouter)
 
@@ -30,7 +30,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach( (to, from, next) => {
-  if( to.meta.isSecret && !CurrentUser) next('/login');
+    console.log(Users);
+  if( to.meta.isSecret && !Users.CurrentUser) next('/login');
   else next();
 });
 
