@@ -7,7 +7,7 @@ const DEAL_AMOUNT = 3;
 let iCurrentCaption = 0;
 
 const Players = [
-    { Name: 'Bernie', Score: 0, isDealer: false }
+    { Name: 'Bernie', Score: 0, isDealer: true }
 ];
 
 const MyCards = [];
@@ -23,6 +23,10 @@ let CurrentPicture = "";
 const CardsInPlay = [];
 
 function SubmitCaption(caption, playerId){
+    const player = Players[playerId];
+    if(player.isDealer){
+        throw Error('Dealer is not allowed to sumbit a caption')
+    } 
     CardsInPlay.push({
         Text: caption,
         PlayerId: playerId,
@@ -32,7 +36,7 @@ function SubmitCaption(caption, playerId){
 
 function Join(userId){
     const user = users.Get(userId);
-    Players.push( { Name: user.Name, Score: 0, isDealer: true })
+    Players.push( { Name: user.Name, Score: 0, isDealer: false })
 
     const myCards = CaptionsDeck.list.slice(iCurrentCaption, iCurrentCaption + DEAL_AMOUNT);
     iCurrentCaption += DEAL_AMOUNT;

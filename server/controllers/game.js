@@ -7,8 +7,6 @@ const game = require('../models/Game');
 
 const router = express.Router();
 
-game.SubmitCaption("Corona Sucks", 0);
-
 router
     .get('/', (req, res) => res.send({
         Players: game.Players, PictureDeck: game.PictureDeck, CurrentPicture: game.CurrentPicture,

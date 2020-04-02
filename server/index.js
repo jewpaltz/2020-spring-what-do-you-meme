@@ -22,6 +22,10 @@ app
         console.log(homePath);
         res.sendFile(homePath)
     })
-
+    .use( (err, req, res, next ) => {
+        console.error(err);
+        const errorCode = err.code || 500;
+        res.status(errorCode).send({ message: err.message });
+    } )
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
