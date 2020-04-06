@@ -11,13 +11,13 @@
       <div class="card">
       <div class="card-content">
         <ul>
-          <li v-for="player in Game.Players" :key="player.Name">
+          <li v-for="player in Game.State.Players" :key="player.Name">
             {{player.Name}} {{player.Score}}
           </li>
         </ul>
       </div>
 
-      <img :src="Game.CurrentPicture"  class="card-image"/>
+      <img :src="Game.State.CurrentPicture"  class="card-image"/>
     </div>
 
   </div>
