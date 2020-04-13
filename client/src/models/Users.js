@@ -1,3 +1,5 @@
+import myFetch, { User } from "./myFetch";
+
 /* B"H
 */
 const Users = [
@@ -8,11 +10,10 @@ const Users = [
 
 export let CurrentUser = null;
 
-export function Login(email, password) {
+export async function Login(email, password) {
 
-    const user = Users.find(x => x.Email == email);
+    const user = await myFetch('/users/login', { email, password }) ;
     if(!user) throw Error('User not found');
-    if(user.Password != password) throw Error('Wrong Password');
 
     return CurrentUser = user;
 }
