@@ -30,7 +30,10 @@ import * as Game from "../models/Game";
 export default {
   name: 'Home',
   created(){
-    Game.Init();
+    Game.Start();
+  },
+  destroyed(){
+    Game.Pause();
   },
   data:()=>({
     Game
