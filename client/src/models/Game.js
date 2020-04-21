@@ -1,30 +1,29 @@
 import { CurrentUser } from "./Users";
 import myFetch from "./myFetch";
 
-export let State = {};
-export let MyCards = [];
-
 let interval;
 
-export function Init(){
-    myFetch('/game/join', {})
-        .then(x=> { 
-            MyCards = x;
-            console.log(x);
-        });
+export default { 
+    State: {},
+    MyCards: [],
+    Init(){
+        myFetch('/game/join', {})
+            .then(x=> { 
+                this.MyCards = x;
+                console.log(x);
+            });
+    },
+    Run(){
+        myFetch('/game')
+            .then(x=> { 
+                this.State = x;
+                console.log(x);
+            });
+    },
+    Start(){
+        interval = setInterval(()=> this.Run(), 2000 )
+    },
+    Pause(){
+        clearInterval(interval);
+    } 
 }
-
-export function Run(){
-    myFetch('/game')
-        .then(x=> { 
-            State = x;
-            console.log(x);
-        });
-}
-
-export function Start(){
-    interval = setInterval(Run, 2000 )
-}
-export function Pause(){
-    clearInterval(interval);
-} 

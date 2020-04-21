@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import * as Game from "../models/Game";
+import Game from "../models/Game";
 
 
 export default {
