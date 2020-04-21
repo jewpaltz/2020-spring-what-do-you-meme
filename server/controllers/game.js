@@ -25,7 +25,7 @@ router
 
     })
 
-    .post('/join', (req, res)=> res.send(game.Join(req.body.userId)) )
+    .post('/join', (req, res)=> res.send(game.Join(req.userId)) )
     .post('/flipPicture', (req, res)=> res.send(game.FlipPicture()) )
 
     .get('/quoteCards', (req, res) => res.send(quoteCards) )
