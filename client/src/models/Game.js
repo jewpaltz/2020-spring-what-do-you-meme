@@ -7,9 +7,13 @@ export default {
     State: {},
     MyCards: [],
     Init(){
+        if(this.MyCards.length){
+            // The player already joined the game. They just temporarily went to a different view.
+            return;
+        }
         myFetch('/game/join', {})
             .then(x=> { 
-                this.MyCards = x;
+                this.MyCards = x.myCards;
                 console.log(x);
             });
     },
