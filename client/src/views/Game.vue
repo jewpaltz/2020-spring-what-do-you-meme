@@ -1,25 +1,28 @@
 <template>
   <div class="container">
-      <div class="card">
-        <div class="card-content">
-            <h1 class="title is-1">
+
+            <h1 class="title is-3">
                 Game Page
             </h1>
+
+
+    <div class="columns">
+      <div class="card column is-one-third">
+        <div class="card-content"> 
+          <ul>
+            <li v-for="player in Game.State.Players" :key="player.Name">
+              {{player.Name}} {{player.Score}}
+            </li>
+          </ul>
         </div>
       </div>
+      
+      <img :src="Game.State.CurrentPicture"  class="card column"/>
+      
+    </div>
+    <div class="columns">
 
-      <div class="card">
-      <div class="card-content">
-        <ul>
-          <li v-for="player in Game.State.Players" :key="player.Name">
-            {{player.Name}} {{player.Score}}
-          </li>
-        </ul>
-      </div>
-
-      <img :src="Game.State.CurrentPicture"  class="card-image"/>
-
-      <div class="card">
+      <div class="card column is-one-third">
         <div class="card-content">
           <ul>
             <li v-for="card in Game.MyCards" :key="card">
@@ -28,7 +31,7 @@
           </ul>
         </div>
       </div>
-      <div class="card">
+      <div class="card column">
         <div class="card-content">
           <ul>
             <li v-for="card in Game.State.CardsInPlay" :key="card.Text">
