@@ -18,6 +18,25 @@
       </div>
 
       <img :src="Game.State.CurrentPicture"  class="card-image"/>
+
+      <div class="card">
+        <div class="card-content">
+          <ul>
+            <li v-for="card in Game.MyCards" :key="card">
+              {{card}} 
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <ul>
+            <li v-for="card in Game.State.CardsInPlay" :key="card.Text">
+              {{card.Text}}, {{card.PlayerId}}, {{card.IsChosen}} 
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
   </div>
