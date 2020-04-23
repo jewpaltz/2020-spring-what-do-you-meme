@@ -7,10 +7,11 @@
 
 
     <div class="columns">
-      <div class="card column is-one-third">
-        <div class="card-content"> 
-          <ul>
-            <li v-for="player in Game.State.Players" :key="player.Name">
+      <div class="column is-one-third">
+        <div class=""> 
+          <ul class="panel">
+            <li class="panel-heading">Players</li>
+            <li v-for="player in Game.State.Players" :key="player.Name" class="panel-block">
               {{player.Name}} {{player.Score}}
             </li>
           </ul>
@@ -22,19 +23,21 @@
     </div>
     <div class="columns">
 
-      <div class="card column is-one-third">
-        <div class="card-content">
-          <ul>
-            <li v-for="card in Game.MyCards" :key="card">
+      <div class="column is-one-third">
+        <div class="">
+          <ul class="panel">
+            <li class="panel-heading">My Cards</li>
+            <li v-for="card in Game.MyCards" :key="card" class="panel-block">
               {{card}} 
             </li>
           </ul>
         </div>
       </div>
-      <div class="card column">
-        <div class="card-content">
-          <ul>
-            <li v-for="card in Game.State.CardsInPlay" :key="card.Text">
+      <div class="column">
+        <div class="">
+          <ul  class="panel">
+            <li class="panel-heading">Cards In Play</li>
+            <li v-for="card in Game.State.CardsInPlay" :key="card.Text"  class="panel-block">
               {{card.Text}}, {{card.PlayerId}}, {{card.IsChosen}} 
             </li>
           </ul>
