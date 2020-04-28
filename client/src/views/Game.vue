@@ -23,7 +23,8 @@
         </div>
       </div>
 
-      <img :src="Game.State.CurrentPicture"  class="card column"/>
+      <img  :src="Game.State.CurrentPicture"  class="card column"
+            @click="flipPicture()"/>
 
     </div>
     <div class="columns">
@@ -33,7 +34,9 @@
         <div class="">
           <ul class="panel">
             <li class="panel-heading">My Cards</li>
-            <li v-for="card in Game.MyCards" :key="card"  class="panel-block">
+            <li v-for="card in Game.MyCards" :key="card" 
+                class="panel-block"
+                @click="SubmitCaption(card)">
               {{card}} 
             </li>
           </ul>
@@ -43,7 +46,8 @@
         <div class="">
           <ul class="panel">
             <li class="panel-heading">Cards in Play</li>
-            <li v-for="card in Game.State.CardsInPlay" :key="card.Text"  class="panel-block">
+            <li v-for="card in Game.State.CardsInPlay" :key="card.Text"  
+                class="panel-block">
               {{card.Text}}, {{card.PlayerId}}, {{card.IsChosen}} 
             </li>
           </ul>
@@ -69,7 +73,15 @@ export default {
   },
   data:()=>({
     Game
-  })
+  }),
+  methods: {
+    SubmitCaption(caption){
+      Game.submitCaption(caption);
+    },
+    flipPicture(){
+      Game.flipPicture();
+    }
+  }
 }
 </script>
 

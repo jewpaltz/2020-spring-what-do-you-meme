@@ -30,5 +30,19 @@ export default {
     },
     Pause(){
         clearInterval(interval);
-    } 
+    },
+    flipPicture() {
+        myFetch('/game/flipPicture', {})
+            .then(x=> { 
+                console.log(x);
+            })
+            .catch(err=> console.warn(err));
+    },
+    submitCaption(caption) {
+        myFetch('/game/cardsInPlay', { caption })
+            .then(x=> { 
+                console.log(x);
+            })
+            .catch(err=> console.warn(err));
+    }
 }
