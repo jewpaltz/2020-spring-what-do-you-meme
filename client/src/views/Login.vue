@@ -35,6 +35,8 @@
             </button>
 
         </div>
+
+        <img :src="profile_picture" v-if="profile_picture" />
   </form>
 </template>
 
@@ -49,7 +51,8 @@ export default {
         return {
             email: '',
             password: '',
-            error: ''
+            error: '',
+            profile_picture: null
         }
     },
     created(){
@@ -110,8 +113,10 @@ export default {
                     console.log('Family Name: ' + profile.getFamilyName());
                     console.log("Image URL: " + profile.getImageUrl());
                     console.log("Email: " + profile.getEmail());
+
+                    this.profile_picture = profile.getImageUrl();
                 } )
-                .catch(error => console.error(error))
+                .catch(error => this.error = error)
 
         },
         facebook_login(){
@@ -120,6 +125,7 @@ export default {
 
                     FB.api('/me?fields=email,name,picture', response => {
                         console.log(response);
+                        this.profile_picture = response.picture.data.url;
                     });
                 }, 
                 {scope: 'email'}
