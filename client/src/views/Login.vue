@@ -29,6 +29,11 @@
             <button class="button is-primary" @click.prevent="google_login" >
                 Login with Google
             </button>
+            <br /><br />
+            <button class="button is-primary" @click.prevent="facebook_login" >
+                Login with Facebook
+            </button>
+
         </div>
   </form>
 </template>
@@ -36,6 +41,7 @@
 <script>
 import { Login } from "../models/Users";
 const GOOGLE_CLIENT_ID = "54172377215-0k6du17ds6up5gm3i1v0d62ehcmno6v2.apps.googleusercontent.com";
+const FACEBOOK_CLIENT_ID = "599472083988800";
 let auth2 = null;
 
 export default {
@@ -62,6 +68,26 @@ export default {
             })
 
         }
+
+        
+
+        window.fbAsyncInit = function() {
+            FB.init({
+            appId      : FACEBOOK_CLIENT_ID,
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v3.0'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
     },
     methods: {
         async login(){
@@ -87,6 +113,17 @@ export default {
                 } )
                 .catch(error => console.error(error))
 
+        },
+        facebook_login(){
+            FB.login(response => {
+                    console.log(response);
+
+                    FB.api('/me?fields=email,name,picture', response => {
+                        console.log(response);
+                    });
+                }, 
+                {scope: 'email'}
+            );
         }
     }
 }
