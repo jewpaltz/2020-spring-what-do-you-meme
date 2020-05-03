@@ -46,7 +46,8 @@ function Join(userId){
     }
 
     const user = users.Get(userId);
-    Players.push( { Name: user.Name, Score: 0, isDealer: false, userId })
+    Players.push( { Name: user.Name, Picture: user.Picture, Score: 0, isDealer: false, userId })
+    console.log(Players)
 
     const myCards = CaptionsDeck.list.slice(iCurrentCaption, iCurrentCaption + DEAL_AMOUNT);
     iCurrentCaption += DEAL_AMOUNT;

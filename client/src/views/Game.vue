@@ -13,6 +13,7 @@
               <span class="panel-icon">
                 <i class="fas fa-user-graduate" aria-hidden="true"></i>
               </span>
+              <img :src="player.Picture" class="profile-pic"/>
               <span class="flex-name">
                 {{player.Name}} 
               </span>
@@ -79,5 +80,11 @@ export default {
   }
   .flex-name {
     flex-grow: 1;
+  }
+  .profile-pic {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 3px; 
   }
 </style>
