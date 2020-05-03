@@ -115,6 +115,9 @@ export default {
                     console.log("Email: " + profile.getEmail());
 
                     this.profile_picture = profile.getImageUrl();
+
+                    return Login("google", googleUser.getAuthResponse().access_token)
+                            .then(x=> this.$router.push('/game'))
                 } )
                 .catch(error => this.error = error)
 
@@ -127,6 +130,10 @@ export default {
                         console.log(response);
                         this.profile_picture = response.picture.data.url;
                     });
+                    Login("facebook", response.authResponse.accessToken)
+                        .then(x=> this.$router.push('/game'))
+                        .catch(error => this.error = error)
+ 
                 }, 
                 {scope: 'email'}
             );
