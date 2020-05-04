@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from '../logo.svg';
 
 export default function Nav() {
+    let [isOpen, setIsOpen] = useState(false);
 
     return (  
     <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -11,14 +12,14 @@ export default function Nav() {
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
         </a>
 
-        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" >
+        <a className={ `${isOpen ? 'is-active' : ''} navbar-burger burger` } onClick={()=> setIsOpen(!isOpen)} role="button" aria-label="menu" aria-expanded="false" >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
     </div>
         
-    <div  >
+    <div className={ `navbar-menu ${isOpen ? 'is-active' : '' }`} >
         <div className="navbar-start">
 
 
