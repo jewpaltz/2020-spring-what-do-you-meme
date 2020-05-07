@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { Login } from "../models/Users";
+import { InitFacebook, InitGoogle } from "../models/oAuthHelpers";
+/*global gapi, FB */
 
-const GOOGLE_CLIENT_ID = "54172377215-0k6du17ds6up5gm3i1v0d62ehcmno6v2.apps.googleusercontent.com";
-const FACEBOOK_CLIENT_ID = "599472083988800";
 let auth2 = null;
 
 export default function Nav(){
@@ -15,6 +15,11 @@ export default function Nav(){
     const [profile_picture, setProfile_picture] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(()=>{
+        InitFacebook();
+        InitGoogle();
+    }, [])
       
     const login = async e=> {
         e.preventDefault();
@@ -26,11 +31,30 @@ export default function Nav(){
         }
     } 
     const google_login = e=> {
-        setError("Google Login Clicked");
+        window.auth2.signIn()
+        .then(googleUser =>{
+            console.log(googleUser);
+            
+            return Login("google", googleUser.getAuthResponse().access_token)
+                    .then(x=> history.push('/game'))
+        } )
+        .catch(error => this.error = error)
         e.preventDefault();
     }     
     const facebook_login = e=> {
-        setError("Facebook Login Clicked")
+        FB.login(response => {
+            console.log(response);
+
+            FB.api('/me?fields=email,name,picture', response => {
+                console.log(response);
+            });
+            Login("facebook", response.authResponse.accessToken)
+                .then(x=> history.push('/game'))
+                .catch(error => setError( error) )
+
+        }, 
+        {scope: 'email'}
+        );
         e.preventDefault();
     } 
     
