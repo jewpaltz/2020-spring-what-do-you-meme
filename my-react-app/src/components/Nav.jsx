@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 import logo from '../logo.svg';
 
 export default function Nav(){
@@ -22,9 +23,9 @@ export default function Nav(){
     <div className="navbar-start">
 
 
-      <a router-link="" to="/" className="navbar-item" active-className="is-current" exact>Home</a>
-      <a router-link="" to="/about" className="navbar-item" active-className="is-current">About</a>
-      <a router-link="" to="/game" className="navbar-item" active-className="is-current">Game</a>
+      <NavLink to="/" className="navbar-item" activeClassName="is-current" exact>Home</NavLink>
+      <NavLink to="/about" className="navbar-item" activeClassName="is-current">About</NavLink>
+      <NavLink to="/game" className="navbar-item" activeClassName="is-current">Game</NavLink>
 
 
       <div className="navbar-item has-dropdown is-hoverable">
