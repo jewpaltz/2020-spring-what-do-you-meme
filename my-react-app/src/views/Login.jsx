@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Login } from "../models/Users";
 import { useHistory } from 'react-router-dom';
+import { IntiGoogle, InitFacebook } from '../models/oAuthHelpers';
+/* globals FB */
 
 export default function LoginComponent(){
 
@@ -9,6 +11,11 @@ export default function LoginComponent(){
     const [password, setPassword] = useState('');
 
     const history = useHistory();
+
+    useEffect(()=>{
+        IntiGoogle();
+        InitFacebook();
+    }, [])
 
     async function login(e){
         e.preventDefault();
@@ -21,12 +28,33 @@ export default function LoginComponent(){
 
     }
     function google_login(e){
-        setError('You Logged In with Google')
         e.preventDefault();
+        window.auth2.signIn()
+        .then(googleUser =>{
+            console.log(googleUser);
+            
+            return Login("google", googleUser.getAuthResponse().access_token)
+                    .then(x=> history.push('/game'))
+        } )
+        .catch(error => setError( error ) )
+
     }
     function facebook_login(e){
-        setError('You Logged In eith Facebook')
         e.preventDefault();
+        FB.login(response => {
+            console.log(response);
+
+            FB.api('/me?fields=email,name,picture', response => {
+                console.log(response);
+            });
+            Login("facebook", response.authResponse.accessToken)
+                .then(x=> history.push('/game'))
+                .catch(error => setError( error ) )
+
+        }, 
+        {scope: 'email'}
+    );
+
     }
 
     return (
