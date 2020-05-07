@@ -18,3 +18,9 @@
     transform: rotate(360deg);
   }
 }
+
+/* Navbar */
+.is-current {
+  font-weight: bold;
+  color: blueviolet
+}
